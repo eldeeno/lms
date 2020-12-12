@@ -14,7 +14,8 @@ class SeriesController extends Controller
      */
     public function index()
     {
-        //
+        $series = Series::paginate(10);
+        return view('series.index', compact('series'));
     }
 
     /**

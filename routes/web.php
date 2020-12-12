@@ -1,5 +1,5 @@
 <?php
-
+use App\Series;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,9 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('front');
+    $featuredSeries = Series::take(3)->latest()->get();
+    return view('front', compact('featuredSeries'));
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/series', 'SeriesController@index')->name('series.index');

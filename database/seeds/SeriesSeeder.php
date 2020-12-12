@@ -11,6 +11,6 @@ class SeriesSeeder extends Seeder
      */
     public function run()
     {
-        factory(Series::class, 10)->create();
+        factory(App\Series::class, 10)->create();
     }
 }
