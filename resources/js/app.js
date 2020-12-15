@@ -29,6 +29,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('pricing-component', require('./components/PricingComponent.vue').default);
+Vue.component('episode-component', require('./components/EpisodeComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

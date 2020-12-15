@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Series;
 use Illuminate\Http\Request;
+
+use App\Series;
 
 class SeriesController extends Controller
 {
@@ -15,7 +16,7 @@ class SeriesController extends Controller
     public function index()
     {
         $series = Series::paginate(10);
-        return view('series.index', compact('series'));
+        return view('front.series.index', compact('series'));
     }
 
     /**
@@ -42,18 +43,18 @@ class SeriesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Series  $series
+     * @param  App\Series  $series
      * @return \Illuminate\Http\Response
      */
     public function show(Series $series)
     {
-        //
+        return view('front.series.show', compact('series'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Series  $series
+     * @param  App\Series  $series
      * @return \Illuminate\Http\Response
      */
     public function edit(Series $series)
@@ -65,10 +66,10 @@ class SeriesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Series  $series
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Series $series)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,11 +77,17 @@ class SeriesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Series  $series
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Series $series)
+    public function destroy($id)
     {
         //
+    }
+
+    public function episode(Series $series, $episodeNumber)
+    {
+        $video = $series->videos()->where('episode_number', $episodeNumber)->first();
+        return view('front.series.video', compact('series', 'episodeNumber', 'video'));
     }
 }

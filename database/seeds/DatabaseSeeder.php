@@ -2,6 +2,9 @@
 
 use Illuminate\Database\Seeder;
 
+use App\Video;
+use App\Series;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -11,6 +14,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(SeriesSeeder::class);
+        // $this->call(SeriesSeeder::class);
+        factory(Series::class, 10)->create()->each(function($series){
+            $series->videos()->saveMany(factory(Video::class, 10)->make());
+        });
     }
 }

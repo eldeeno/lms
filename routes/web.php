@@ -19,4 +19,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/series', 'SeriesController@index')->name('series.index');
+Route::resource('/series', 'SeriesController');
+Route::get('/series/{series}/episode/{episodeNumber}', 'SeriesController@episode')->name('series.episode');
+
